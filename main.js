@@ -5,7 +5,7 @@
             const errorMessage = document.getElementById('errorMessage');
         
             try {
-                const tickets = await ticketFetch(); 
+                const tickets = await fetchTickets(); 
         
          
                 if (tickets.length === 0) {
