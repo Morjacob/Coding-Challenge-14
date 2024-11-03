@@ -4,8 +4,9 @@ async function fetchTickets() {
     const errorMessage = document.getElementById('errorMessage');
     const loadingIndicator = document.getElementById('loadingIndicator');
 
+// will not show "loading..." when fetching tickets
     loadingIndicator.style.display = 'block';
-    
+
     try {  
 
         const response = await fetch(apiUrl); 
@@ -14,13 +15,14 @@ async function fetchTickets() {
             throw new Error(`Network response failed: ${response.statusText}`);
         }
 
+//converts the JSON data from the API 
         const tickets = await response.json(); 
         
         if (tickets.length === 0) {
             throw new Error('No tickets fetched.');
         }
 
-
+//dynamically inserts tickets in to the ticket container
         ticketContainer.innerHTML = tickets.map(ticket => `
             <div class="ticket">
                 <h3>Ticket ID: ${ticket.id}</h3>
@@ -29,10 +31,12 @@ async function fetchTickets() {
                 <p><strong>Details:</strong> ${ticket.body}</p>
             </div>
         `).join('');
+        
     } catch (error) {
  
         errorMessage.textContent = 'Error fetching tickets: ' + error.message;
         errorMessage.style.display = 'block';
+
     } finally {
     loadingIndicator.style.display = 'none';
 };
