@@ -7,13 +7,13 @@ async function fetchTickets() {
         const response = await fetch(apiUrl); 
         
         if (!response.ok) {
-            throw new Error(`Network response was not ok: ${response.statusText}`);
+            throw new Error(`Network response failed: ${response.statusText}`);
         }
 
         const tickets = await response.json(); 
         
         if (tickets.length === 0) {
-            throw new Error('No tickets found.');
+            throw new Error('No tickets fetched.');
         }
 
 
@@ -29,7 +29,8 @@ async function fetchTickets() {
  
         errorMessage.textContent = 'Error fetching tickets: ' + error.message;
         errorMessage.style.display = 'block';
-    }
+    } finally {
+    loadingIndicator.style.display = 'none';
 }
 
 
