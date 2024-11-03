@@ -31,8 +31,8 @@ async function fetchTickets() {
         errorMessage.style.display = 'block';
     } finally {
     loadingIndicator.style.display = 'none';
+};
 }
-
 
 window.onload = fetchTickets;
 
