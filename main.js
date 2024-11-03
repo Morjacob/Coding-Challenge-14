@@ -2,8 +2,12 @@ async function fetchTickets() {
     const apiUrl = 'https://jsonplaceholder.typicode.com/posts';
     const ticketContainer = document.getElementById('ticketContainer');
     const errorMessage = document.getElementById('errorMessage');
+    const loadingIndicator = document.getElementById('loadingIndicator');
 
-    try {
+    loadingIndicator.style.display = 'block';
+    
+    try {  
+
         const response = await fetch(apiUrl); 
         
         if (!response.ok) {
